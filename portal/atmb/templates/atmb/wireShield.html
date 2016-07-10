@@ -1,0 +1,117 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static '/static/vendor/bootstrap/css/bootstrap.min.css' %}" />
+<style type="text/css">
+fieldset{padding:.35em .625em .75em;margin:0 2px;border:1px solid silver}
+legend{padding:.5em;border:0;width:auto}
+</style>
+<div class="container-fluid">
+  {{ form.non_field_errors }}
+  <div  class="row">
+    <div class="col-md-12">
+      <form role="form" action='/atmb/wireShield/{{site_id}}/' method="POST">
+        {% csrf_token %}
+         <fieldset>
+           <legend>等电位连接</legend>
+           <div class="fieldWrapper">
+           {{form.equipotential_mode.errors}}
+           <label for="{{ form.equipotential_mode.id_for_label }}">等电位形式</label>
+           {{ form.equipotential_mode}}
+           {{form.meb_des.errors}}
+           <label for="{{ form.meb_des.id_for_label }}">MEB</label>
+           {{ form.meb_des}}
+           {{form.meb_value.errors}}
+           {{ form.meb_value}}Ω
+           {{form.leb_des.errors}}
+           <label for="{{ form.leb_des.id_for_label }}">LEB</label>
+           {{ form.leb_des}}
+           {{form.leb_value.errors}}
+           {{ form.leb_value}}Ω
+           {{form.has_antistatic_floor.errors}}
+            <label for="form.has_antistatic_floor.id_for_label">抗静电地板</label>
+            {{form.has_antistatic_floor}}
+            {{form.is_bracket_under_ground.errors}}
+             <label for="form.is_bracket_under_ground.id_for_label">接地</label>
+            {{form.is_bracket_under_ground}}
+         </div>
+         <div class="fieldWrapper">
+            {{form.equipment_ground_star.errors}}
+           <label for="{{ form.equipment_ground_star.id_for_label }}">设备接地</label>
+           {{ form.equipment_ground_star}}
+            {{form.shelf_ground_start.errors}}
+           <label for="{{ form.shelf_ground_start.id_for_label }}">机柜接地</label>
+           {{ form.shelf_ground_start}}
+            {{form.earth_wire_star.errors}}
+           <label for="{{ form.earth_wire_star.id_for_label }}">地线长度/颜色/线径综合评定</label>
+           {{ form.earth_wire_star}}
+          
+         </div>
+         
+         <div class="fieldWrapper">
+          {{form.misc_star.errors}}
+           <label for="{{ form.misc_star.id_for_label }}">铠(屏蔽)层/光缆钢芯、冗余线、金属管道、消防柜、电池柜</label>
+           {{ form.misc_star}}
+         </div>
+         <div class="fieldWrapper">
+          {{form.equipotential_memo.errors}}
+           <label for="{{ form.equipotential_memo.id_for_label }}">备注（待确认后，自动同去步到常规项的备注中）</label>
+           {{ form.equipotential_memo}}
+         </div>
+         </fieldset>
+          <fieldset>
+           <legend>屏蔽</legend>
+           <div class="fieldWrapper">
+            {{form.has_idc_shield.errors}}
+           <label for="{{ form.has_idc_shield.id_for_label }}">机房屏蔽</label>
+           {{ form.has_idc_shield}}
+           {{form.idc_shield_des}}
+           {{form.has_shelf_shield.errors}}
+           <label for="{{ form.has_shelf_shield.id_for_label }}">机房屏蔽</label>
+           {{ form.has_shelf_shield}}
+           {{form.shelf_shield_des}}
+           {{form.has_line_shield.errors}}
+           <label for="{{ form.has_line_shield.id_for_label }}">机房屏蔽</label>
+           {{ form.has_line_shield}}
+           {{form.line_shield_des}}
+           </div>
+           <div class="fieldWrapper">
+             {{form.shield_memo.errors}}
+           <label for="{{ form.shield_memo.id_for_label }}">备注（待确认后，自动同去步到常规项的备注中）</label>
+           {{ form.shield_memo}}
+           </div>
+         </fieldset>
+         <fieldset>
+           <legend>布线</legend>
+
+   <div class="fieldWrapper">
+             {{form.has_wire.errors}}
+           <label for="{{ form.has_wire.id_for_label }}">弱电电缆-金属线线槽/管道</label>
+           {{ form.has_wire}}
+           {{form.is_wire1_proper.errors}}
+           <label for="{{ form.is_wire1_proper.id_for_label }}">电磁感应环路面积合理</label>
+           {{ form.is_wire1_proper}}
+             {{form.is_wire2_proper.errors}}
+           <label for="{{ form.is_wire2_proper.id_for_label }}">与避雷引下线距离合理</label>
+           {{ form.is_wire2_proper}}
+           {{form.is_wire3_proper.errors}}
+           <label for="{{ form.is_wire3_proper.id_for_label }}">强弱电电缆敷设距离合理</label>
+           {{ form.is_wire3_proper}}
+           </div>
+          
+
+         </fieldset>
+          <fieldset>
+           <legend>备注</legend>
+            <div class="fieldWrapper">
+             {{form.wire_memo.errors}}
+           <div for="{{ form.wire_memo.id_for_label }}">备注（待确认后，自动同去步到常规项的备注中）</div>
+           {{ form.wire_memo}}
+           </div>
+         </fieldset>
+         <button type="submit" class="btn btn-default">提交</button>
+     </form>
+   </div>
+ </div>
+</div>
+
+

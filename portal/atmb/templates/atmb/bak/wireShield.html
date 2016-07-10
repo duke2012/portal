@@ -1,0 +1,77 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static '/static/vendor/bootstrap/css/bootstrap.min.css' %}" />
+<style type="text/css">
+fieldset{padding:.35em .625em .75em;margin:0 2px;border:1px solid silver}
+legend{padding:.5em;border:0;width:auto}
+</style>
+<div class="container-fluid">
+<div  class="row">
+<div class="col-md-12">
+<form role="form" action='/atmb/postBasicItem/{{siteId}}/' method="POST"  enctype="multipart/form-data">
+{% csrf_token %}
+   <div class="form-group">
+   <fieldset>
+   <legend>等电位连接</legend>
+      <label  for="name">等电位形式</label>
+      <select>
+        <option>S</option>
+        <option>M</option>
+        <option>Ss</option>
+        <option>Mm</option>
+      </select>
+       <label for="name">MEB</label>
+       <input type="text"   name="mebDes"  value="{{wireShield.meb_des}}"  >
+       <input type="text"   name="mebValue" value="{{wireShield.meb_value}}"  >Ω
+     <label for="name">LEB</label>
+     <input type="text"   name="lebDes" value="{{wireShield.leb_des}}"  >
+       <input type="text"  name="lebValue" value="{{wireShield.leb_value}}"  >Ω
+      <label for="name">抗静电地板</label>
+      <input type='checkbox' checked="{{wireShield.has_antistatic_floor}}">
+      <input type='checkbox' checked="{{wireShield.is_bracket_under_ground}}">
+      <label for="name">设备接地</label>
+      <input type="text"   value=""  >
+     <label for="name">机柜接地</label>
+     <input type="text"   value=""  >
+      <label for="name">地线长度/颜色/线径综合评定</label>
+      <input type="text"   value=""  >
+      <label  for="name">铠(屏蔽)层/光缆钢芯、冗余线、金属管道、消防柜、电池柜</label>
+      <input type="text"   value=""  >
+       <label for="name">备注（待确认后，自动同去步到常规项的备注中）:</label>
+      <input type="text" class="form-control" name="equipotentialMemo" value="{{wireShield.equipotential_memo}}">
+      </fieldset>
+      <fieldset>
+        <legend>屏蔽:</legend>
+             <label for="name">机房屏蔽 </label>
+             <input type='checkbox' value="{{wireShield.has_idc_shield}}">
+             <input type="text"   name="idcShieldDesc" value="{{wireShield.idc_shield_desc}}" >
+      <label for="name">机柜屏蔽</label>
+      <input type='checkbox' value="{{wireShield.has_shelf_shield}}">
+      <input type="text"  name="shelfShieldDesc" value="{{wireShield.shelf_shield_desc}}" >
+     <label for="name">线缆屏蔽</label>
+<input type='checkbox' value="{{wireShield.has_line_shield}}">
+             <input type="text"   name="lineShieldDesc" value="{{wireShield.line_shield_desc}}" >
+      <label for="name">备注（待确认后，自动同去步到常规项的备注中）:</label>
+       <input type="text" class="form-control"  name="shieldMemo" value="{{wireShield.shield_memo}}">
+      </fieldset>
+     <fieldset>
+        <legend>布线:</legend>
+        <label for="name">弱电电缆-金属线线槽/管道</label>
+        <input type='checkbox' >
+      <label for="name">电磁感应环路面积合理</label>
+      <input type='checkbox'>
+      <label for="name">与避雷引下线距离合理</label>
+      <input type='checkbox'>
+     <label for="name">强弱电电缆敷设距离合理</label>
+     <input type='checkbox'>
+      <label for="name">备注（待确认后，自动同去步到常规项的备注中）:</label>
+      <input type="text" class="form-control" name="wireMemo" value="{{wireShield.wire_memo}}">
+      </fieldset>
+   </div>
+    
+</form>
+</div>
+</div>
+</div>
+
+

@@ -1,0 +1,69 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static '/static/vendor/bootstrap/css/bootstrap.min.css' %}" />
+<div class="container-fluid">
+<div  class="row">
+<div class="col-md-12">
+<form role="form" action='/atmb/postBasicItem/{{siteId}}/' method="POST"  enctype="multipart/form-data">
+{% csrf_token %}
+   <div class="form-group">
+      <label  for="name">巡检日期</label>
+      <input type="date" class="form-control" id="checkDate"  name="checkDate" value="{{basicItem.check_date|date:'Y-m-d'}}">
+       <label for="name">天气</label>
+      <input type="text" class="form-control" id="weather"  name='weather' value="{{basicItem.weather}}"  >
+      <label for="name">温度</label>
+      <input type="text" class="form-control" id="temperature"  name="temperature" value="{{basicItem.temperature}}" >
+   </div>
+    <div class="form-group">
+      <label for="name">雷暴日</label>
+      <input type="text" class="form-control" id="thunderboltDay"  name="thunderboltDay" value="{{basicItem.thunderbolt_day}}">
+       <label for="name">雷电防护等级</label>
+      <input type="text" class="form-control" id="thunderboltProtectLevel"  name="thunderboltProtectLevel" value="{{basicItem.thunderbolt_protect_level}}">
+      <label for="name">电源接地形式</label>
+      <input type="text" class="form-control" id="powerGroundMode"  name="powerGroundMode" value="{{basicItem.power_ground_mode}}">
+   </div>
+   <div class="form-group">
+      <label for="name">巡检工程师</label>
+      <input type="text" class="form-control" id="checkEngineer"  name="checkEngineer" value="{{basicItem.check_engineer}}">
+   </div>
+   <div class="form-group">
+      <label >现场照片</label>
+      <input type="file" name='spotPicture'>
+       <label >系统拓扑图</label>
+      <input type="file" name='sysTopology'>
+       <label >防雷平面图</label>
+      <input type="file"  name='thunderProtectPlan'>
+   </div>
+   <div class="form-group">
+    <label for="name">站点概况（建筑规模，台站类型，供电系统，电缆敷设）</label>
+    <textarea  id ="siteOverview" name="siteOverview" class="form-control" rows="3" >{{basicItem.site_overview}}</textarea>
+  </div>
+   <div class="form-group">
+    <label for="name">巡检备注</label>
+    <textarea  id="memo"  name="memo" class="form-control" rows="3" >{{basicItem.memo}}</textarea>
+  </div>
+   <div class="form-group">
+    <label for="name">巡检建议</label>
+    <textarea id="reportSuggestion" name="reportSuggestion" class="form-control" rows="3" >{{basicItem.report_suggestion}}</textarea>
+  </div>
+ <div class="checkbox">
+      <label  >雷击事件</label>
+      <label><input type="checkbox"> 请打勾</label>
+      <label  >（备注：可根据每年的次数进行记录的增加，如无下列单元格以灰色显示）</label>
+   </div>
+      <div class="form-group">
+      <label >雷击日期</label>
+     <input type="date" class="form-control"  name="thunderHitDate" >
+       <label for="inputfile">雷击分析</label>
+      <input type="file" name='thunderHitAnalysis'>
+       <label for="inputfile">整改措施</label>
+      <input type="file" name='thunderRectifyAction'>
+   </div>
+   <button type="submit" class="btn btn-default">提交</button>
+   <input type='hidden' name="siteCheckId"readonly value='{{basicItem.id}}'/> 
+   <input type='hidden' name='siteId' readonly value='{{basicItem.atmb_id}}'/> 
+</form>
+</div>
+</div>
+</div>
+
+

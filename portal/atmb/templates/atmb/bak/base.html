@@ -1,0 +1,104 @@
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../static/vendor/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../static/vendor/jstree/css/jstree.min.css" />
+    <style>
+        .mainFrame {
+            position: absolute;
+            width: 100%;
+            height: 1000px;
+            border: none;
+        }
+    </style>
+
+</head>
+
+<body>
+ <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">RenOwn</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container-fluid"  style="margin-top: 50px">
+    <div class="row">
+    <div class="col-md-3">
+    <div id="side-menu-container">
+     <ul class="nav nav-sidebar" id="side-menu">
+     </ul>
+     </div>
+    </div>
+     <div class="col-md-9" style="position: relative;">
+	     <ul id="myTab" class="nav nav-tabs">
+	   <li ><a href="#basicItem" data-toggle="tab"> 常规项</a></li>
+	   <li><a href="#thunderExternalProtect" data-toggle="tab">外部防雷</a></li>
+	    <li><a href="#thunderBoltPulse" data-toggle="tab">雷击电磁脉冲</a></li>
+	   <li><a href="#wireShield" data-toggle="tab">等电位连接/屏蔽及布线</a></li>
+	</ul>
+	<div class="tab-content" >
+	   <div class="tab-pane " id="basicItem">
+	   <iframe class="mainFrame active"></iframe>
+	   </div>
+	   <div class="tab-pane " id="thunderExternalProtect">
+	   <iframe class="mainFrame"></iframe>
+	   </div>
+	   <div class="tab-pane " id="thunderBoltPulse">
+	   <iframe class="mainFrame"></iframe>
+	   </div>
+	   <div class="tab-pane " id="wireShield">
+	   <iframe class="mainFrame"></iframe>
+	   </div>
+	</div>
+    </div>
+    </div>
+    </div><!-- /.container -->
+
+<script type="text/javascript"  src="../static/vendor/jquery/js/jquery.min.js"></script>
+<script type="text/javascript"  src="../static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript"  src="../static/vendor/jstree/js/jstree.min.js"></script>
+<script type="text/javascript"  src="../static/atmb/js/utils.js"></script>
+<script type="text/javascript" >
+	$(function(){
+		//initial  side menus
+		var menus={{menuList|safe}}
+		var endMenu=getMenu(0,menus)
+		$(endMenu.join('')).appendTo('#side-menu');
+		$('#side-menu-container').jstree();
+		var tree=$('#side-menu-container').jstree(true);
+		tree.open_all();
+		//add listener for leafnode
+		$('#side-menu-container').on('changed.jstree', function(e, data) {  
+		            for (i = 0, j = data.selected.length; i < j; i++) {  
+		                var node = data.instance.get_node(data.selected[i]);  
+		                if (data.instance.is_leaf(node)) {  
+		                  	siteId=node.li_attr.value;
+		                  	 $(" #basicItem iframe").attr("src",'basicItem/'+siteId+"/");
+		                  	 $(" #thunderExternalProtect iframe").attr("src",'thunderExternalProtect/'+siteId+"/");
+		                  	 $(" #thunderBoltPulse iframe").attr("src",'thunderBoltPulse/'+siteId+"/");
+		                  	 $(" #wireShield iframe").attr("src",'wireShield/'+siteId+"/");
+		                }
+		            }  
+		        })  
+		
+})
+</script>
+
+
+</body>
+</html>

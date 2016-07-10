@@ -1,0 +1,14 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static '/static/vendor/bootstrap/css/bootstrap.min.css' %}" />
+<div class="container-fluid">
+<div  class="row">
+<div class="col-md-12">
+<form role="form" action='/atmb/postBasicItem/{{siteId}}/' method="POST"  enctype="multipart/form-data">
+{% csrf_token %}
+  
+</form>
+</div>
+</div>
+</div>
+
+

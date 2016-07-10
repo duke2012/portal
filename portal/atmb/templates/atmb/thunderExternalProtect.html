@@ -1,0 +1,189 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static '/static/vendor/bootstrap/css/bootstrap.min.css' %}"/>
+<style type="text/css">
+    fieldset {
+        padding: .35em .625em .75em;
+        margin: 0 2px;
+        border: 1px solid silver
+    }
+
+    legend {
+        padding: .5em;
+        border: 0;
+        width: auto
+    }
+</style>
+<form method="post" action="/atmb/editThunderExternalProtect/{{site_id}}/">
+    {% csrf_token %}
+    <fieldset>
+    <legend>接闪器 <span class="glyphicon glyphicon-plus"></span></legend>
+    {{ lightningReceptors.management_form }}
+    {% for lightningReceptor in lightningReceptors %}
+     <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#lightningReceptor{{lightningReceptor.instance.id}}">
+                        接闪器,点击展开/折叠
+                    </a>
+                </h4>
+            </div>
+            <div id="lightningReceptor{{lightningReceptor.instance.id}}" class="panel-collapse collapse">
+                <div class="panel-body">
+                        <div class="fieldWrapper">
+                            {{lightningReceptor.id}}
+                            {{lightningReceptor.light_device.label_tag}}
+                            {{lightningReceptor.light_device}}
+                            {{lightningReceptor.light_device.errors}}
+                            {{lightningReceptor.position.label_tag}}
+                            {{lightningReceptor.position}}
+                            {{lightningReceptor.position.errors}}
+                            {{lightningReceptor.resistance.label_tag}}
+                            {{lightningReceptor.resistance}}
+                            {{lightningReceptor.resistance.errors}}
+                        </div>
+                        <div class="fieldWrapper">
+                            {{lightningReceptor.quantity.label_tag}}
+                            {{lightningReceptor.quantity}}
+                            {{lightningReceptor.quantity.errors}}
+                            {{lightningReceptor.install_date.label_tag}}
+                            {{lightningReceptor.install_date}}
+                            {{lightningReceptor.install_date.errors}}
+                            {{lightningReceptor.check_result.label_tag}}
+                            {{lightningReceptor.check_result}}
+                            {{lightningReceptor.check_result.errors}}
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                </div>
+
+
+    {% endfor %}
+     </fieldset>
+     <fieldset>
+    <legend>引下线 <span class="glyphicon glyphicon-plus"></span></legend>
+    <div class="panel-group">
+        {{ downLeadLines.management_form }}
+        {% for downLeadLine in downLeadLines %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#downLeadLine{{downLeadLine.instance.id}}">
+                        引下线,点击展开/折叠
+                    </a>
+                </h4>
+            </div>
+            <div id="downLeadLine{{downLeadLine.instance.id}}" class="panel-collapse collapse">
+                <div class="panel-body">
+                        <div class="fieldWrapper">
+                            {{downLeadLine.id}}
+                            {{downLeadLine.mode.label_tag}}
+                            {{downLeadLine.mode}}
+                            {{downLeadLine.mode.errors}}
+                            {{downLeadLine.spec.label_tag}}
+                            {{downLeadLine.spec}}
+                            {{downLeadLine.spec.errors}}
+                            {{downLeadLine.resistance.label_tag}}
+                            {{downLeadLine.resistance}}
+                            {{downLeadLine.resistance.errors}}
+                        </div>
+                        <div class="fieldWrapper">
+                            {{downLeadLine.quantity.label_tag}}
+                            {{downLeadLine.quantity}}
+                            {{downLeadLine.quantity.errors}}
+                            {{downLeadLine.distance_away_cable.label_tag}}
+                            {{downLeadLine.distance_away_cable}}
+                            {{downLeadLine.distance_away_cable.errors}}
+                            {{downLeadLine.cable_quantity.label_tag}}
+                            {{downLeadLine.cable_quantity}}
+                            {{downLeadLine.cable_quantity.errors}}
+                            {{downLeadLine.check_result.label_tag}}
+                            {{downLeadLine.check_result}}
+                            {{downLeadLine.check_result.errors}}
+                        </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</fieldset>
+<fieldset>
+    <legend>接地装置 <span class="glyphicon glyphicon-plus"></span></legend><!-- 点击添加Model-->
+    <div class="panel-group">
+        {{ earthDevices.management_form }}
+        {% for earthDevice in earthDevices %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#earthDevice{{earthDevice.instance.id}}">
+                        接地装置,点击展开/折叠
+                    </a>
+                </h4>
+            </div>
+            <div id="earthDevice{{earthDevice.instance.id}}" class="panel-collapse collapse">
+                <div class="panel-body">
+                        <div class="fieldWrapper">
+                            {{earthDevice.id}}
+                            {{earthDevice.mode.label_tag}}
+                            {{earthDevice.mode}}
+                            {{earthDevice.mode.errors}}
+                            {{earthDevice.material.label_tag}}
+                            {{earthDevice.material}}
+                            {{earthDevice.material.errors}}
+                            {{earthDevice.resistance.label_tag}}
+                            {{earthDevice.resistance}}
+                            {{earthDevice.resistance.errors}}
+                        </div>
+                        <div class="fieldWrapper">
+                            {{earthDevice.position.label_tag}}
+                            {{earthDevice.position}}
+                            {{earthDevice.position.errors}}
+                            {{earthDevice.construction_date.label_tag}}
+                            {{earthDevice.construction_date}}
+                            {{earthDevice.construction_date.errors}}
+                            {{earthDevice.check_result.label_tag}}
+                            {{earthDevice.check_result}}
+                            {{earthDevice.check_result.errors}}
+                        </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</fieldset>
+<fieldset>
+    <legend>备注</legend>
+    {{ memo.management_form }}
+     {% for obj in memo %}
+        <div class="fieldWrapper">
+            {{obj.id}}
+           <div> {{obj.memo.label_tag}}</div>
+            {{obj.memo}}
+            {{obj.memo.errors}}
+        </div>
+         {% endfor %}
+</fieldset>
+    <button type="submit" class="btn btn-default">提交</button>
+   
+</form>
+
+  
+
+<script type="text/javascript"  src="/../static/vendor/jquery/js/jquery.min.js"></script>
+<script type="text/javascript"  src="/../static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    $('.glyphicon-plus').on('click', function () {
+            var that=$(this).closest('fieldset').find('.panel-collapse:last');
+            if(!that.hasClass('in')){
+                that.addClass('in');
+            }else{
+                that.removeClass('in');
+            }
+            
+        })
+})
+</script>
+
+

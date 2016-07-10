@@ -1,0 +1,278 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static '/static/vendor/bootstrap/css/bootstrap.min.css' %}"/>
+<style type="text/css">
+    fieldset {
+        padding: .35em .625em .75em;
+        margin: 0 2px;
+        border: 1px solid silver
+    }
+
+    legend {
+        padding: .5em;
+        border: 0;
+        width: auto
+    }
+</style>
+<form method="post" action="/atmb/editThunderBoltPulse/{{site_id}}/">
+    {% csrf_token %}
+    <fieldset>
+        <legend>电源SPD <span class="glyphicon glyphicon-plus"></span></legend>
+        {{ powerSpds.management_form }}
+        {% for powerSpd in powerSpds %}
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#powerSpd{{powerSpd.instance.id}}">
+                            电源SPD,点击展开/折叠
+                        </a>
+                    </h4>
+                </div>
+                <div id="powerSpd{{powerSpd.instance.id}}" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="fieldWrapper">
+                            {{powerSpd.id}}
+                            {{powerSpd.category.label_tag}}
+                            {{powerSpd.category}}
+                            {{powerSpd.category.errors}}
+                            {{powerSpd.type.label_tag}}
+                            {{powerSpd.type}}
+                            {{powerSpd.type.errors}}
+                            {{powerSpd.Uc.label_tag}}
+                            {{powerSpd.Uc}}V
+                            {{powerSpd.Uc.errors}}
+                            {{powerSpd.In.label_tag}}
+                            {{powerSpd.In}}kA
+                            {{powerSpd.In.errors}}
+                            {{powerSpd.Up.label_tag}}
+                            {{powerSpd.Up}}V
+                            {{powerSpd.Up.errors}}
+                        </div>
+                        <div class="fieldWrapper">
+                            {{powerSpd.main_circuit_a.label_tag}}
+                            {{powerSpd.main_circuit_a}}A,
+                            {{powerSpd.main_circuit_a.errors}}
+                            {{powerSpd.main_circuit_p.label_tag}}
+                            {{powerSpd.main_circuit_p}}P
+                            {{powerSpd.main_circuit_p.errors}}
+                            {{powerSpd.backup_protection_a.label_tag}}
+                            {{powerSpd.backup_protection_a}}A,
+                            {{powerSpd.backup_protection_a.errors}}
+                            {{powerSpd.backup_protection_p.label_tag}}
+                            {{powerSpd.backup_protection_p}}P
+                            {{powerSpd.backup_protection_p.errors}}
+                            {{powerSpd.wiring_total_len.label_tag}}
+                            {{powerSpd.wiring_total_len}}米
+                            {{powerSpd.wiring_total_len.errors}}
+                            {{powerSpd.payload.label_tag}}
+                            {{powerSpd.payload}}
+                            {{powerSpd.payload.errors}}
+                        </div>
+                        <div class="fieldWrapper">
+                            {{powerSpd.onsite_test.label_tag}}
+                            {{powerSpd.onsite_test}}
+                            {{powerSpd.onsite_test.errors}}
+                        </div>
+                        <div class="fieldWrapper">
+                            {{powerSpd.pressure_1_v.label_tag}}
+                            {{powerSpd.pressure_1_v}}V
+                            {{powerSpd.pressure_1_v.errors}}
+                            {{powerSpd.pressure_1_ua.label_tag}}
+                            {{powerSpd.pressure_1_ua}}uA
+                            {{powerSpd.pressure_1_ua.errors}}
+                            {{powerSpd.pressure_2_v.label_tag}}
+                            {{powerSpd.pressure_2_v}}V
+                            {{powerSpd.pressure_2_v.errors}}
+                            {{powerSpd.pressure_2_ua.label_tag}}
+                            {{powerSpd.pressure_2_ua}}uA
+                            {{powerSpd.pressure_2_ua.errors}}
+                            {{powerSpd.pressure_3_v.label_tag}}
+                            {{powerSpd.pressure_3_v}}V
+                            {{powerSpd.pressure_3_v.errors}}
+                            {{powerSpd.pressure_3_ua.label_tag}}
+                            {{powerSpd.pressure_3_ua}}uA
+                            {{powerSpd.pressure_3_ua.errors}}
+                            {{powerSpd.pressure_4_v.label_tag}}
+                            {{powerSpd.pressure_4_v}}V
+                            {{powerSpd.pressure_4_v.errors}}
+                            {{powerSpd.pressure_4_ua.label_tag}}
+                            {{powerSpd.pressure_4_ua}}uA
+                            {{powerSpd.pressure_4_ua.errors}}
+                        </div>
+                          <div class="fieldWrapper">
+                            {{powerSpd.quantity.label_tag}}
+                            {{powerSpd.quantity}}
+                            {{powerSpd.quantity.errors}}
+                            {{powerSpd.install_date.label_tag}}
+                            {{powerSpd.install_date}}
+                            {{powerSpd.install_date.errors}}
+                            {{powerSpd.install_place.label_tag}}
+                            {{powerSpd.install_place}}
+                            {{powerSpd.install_place.errors}}
+                            {{powerSpd.check_result.label_tag}}
+                            {{powerSpd.check_result}}
+                            {{powerSpd.check_result.errors}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+    </fieldset>
+    <fieldset>
+        <legend>信号SPD <span class="glyphicon glyphicon-plus"></span></legend>
+        <div class="panel-group">
+            {{ signalSpds.management_form }}
+            {% for signalSpd in signalSpds %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#signalSpd{{signalSpd.instance.id}}">
+                            信号SPD,点击展开/折叠
+                        </a>
+                    </h4>
+                </div>
+                <div id="signalSpd{{signalSpd.instance.id}}" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="fieldWrapper">
+                            {{signalSpd.id}}
+                            {{signalSpd.category.label_tag}}
+                            {{signalSpd.category}}
+                            {{signalSpd.category.errors}}
+                            {{signalSpd.type.label_tag}}
+                            {{signalSpd.type}}
+                            {{signalSpd.type.errors}}
+                            {{signalSpd.Uc.label_tag}}
+                            {{signalSpd.Uc}}V
+                            {{signalSpd.Uc.errors}}
+                            {{signalSpd.In.label_tag}}
+                            {{signalSpd.In}}kA
+                            {{signalSpd.In.errors}}
+                            {{signalSpd.Up.label_tag}}
+                            {{signalSpd.Up}}V
+                            {{signalSpd.Up.errors}}
+                        </div>
+                        <div class="fieldWrapper">
+                            {{signalSpd.ground_wire_len.label_tag}}
+                            {{signalSpd.ground_wire_len}}
+                            {{signalSpd.ground_wire_len.errors}}
+                            {{signalSpd.payload.label_tag}}
+                            {{signalSpd.payload}}
+                            {{signalSpd.payload.errors}}
+                            {{signalSpd.quantity.label_tag}}
+                            {{signalSpd.quantity}}
+                            {{signalSpd.quantity.errors}}
+                            {{signalSpd.install_date.label_tag}}
+                            {{signalSpd.install_date}}
+                            {{signalSpd.install_date.errors}}
+
+                        </div>
+                        <div class="fieldWrapper">
+                            {{signalSpd.install_place.label_tag}}
+                            {{signalSpd.install_place}}
+                            {{signalSpd.install_place.errors}}
+                            {{signalSpd.protection_device.label_tag}}
+                            {{signalSpd.protection_device}}
+                            {{signalSpd.protection_device.errors}}
+                            {{signalSpd.check_result.label_tag}}
+                            {{signalSpd.check_result}}
+                            {{signalSpd.check_result.errors}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>馈线SPD <span class="glyphicon glyphicon-plus" ></span></legend><!-- 点击添加Model-->
+        <div class="panel-group">
+            {{ feederLineSpds.management_form }}
+            {% for feederLineSpd in feederLineSpds %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#feederLineSpd{{feederLineSpd.instance.id}}">
+                            馈线SPD,点击展开/折叠
+                        </a>
+                    </h4>
+                </div>
+                <div id="feederLineSpd{{feederLineSpd.instance.id}}" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="fieldWrapper">
+                            {{feederLineSpd.id}}
+                            {{feederLineSpd.type.label_tag}}
+                            {{feederLineSpd.type}}
+                            {{feederLineSpd.type.errors}}
+                            {{feederLineSpd.Uc.label_tag}}
+                            {{feederLineSpd.Uc}}V,
+                            {{feederLineSpd.Uc.errors}}
+                            {{feederLineSpd.In.label_tag}}
+                            {{feederLineSpd.In}}kA
+                            {{feederLineSpd.In.errors}}
+                            {{feederLineSpd.Up.label_tag}}
+                            {{feederLineSpd.Up}}V
+                            {{feederLineSpd.Up.errors}}
+                            {{feederLineSpd.ground_wire_len.label_tag}}
+                            {{feederLineSpd.ground_wire_len}}
+                            {{feederLineSpd.ground_wire_len.errors}}
+                        </div>
+                        <div class="fieldWrapper">
+                            {{feederLineSpd.quantity.label_tag}}
+                            {{feederLineSpd.quantity}}
+                            {{feederLineSpd.quantity.errors}}
+                            {{feederLineSpd.install_date.label_tag}}
+                            {{feederLineSpd.install_date}}
+                            {{feederLineSpd.install_date.errors}}
+                            {{feederLineSpd.install_place.label_tag}}
+                            {{feederLineSpd.install_place}}
+                            {{feederLineSpd.install_place.errors}}
+                            {{feederLineSpd.protection_device.label_tag}}
+                            {{feederLineSpd.protection_device}}
+                            {{feederLineSpd.protection_device.errors}}
+                            {{feederLineSpd.check_result.label_tag}}
+                            {{feederLineSpd.check_result}}
+                            {{feederLineSpd.check_result.errors}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>备注</legend>
+        {{ memo.management_form }}
+        {% for obj in memo %}
+        <div class="fieldWrapper">
+            {{obj.id}}
+
+            <div>{{obj.memo.label_tag}}</div>
+            {{obj.memo}}
+            {{obj.memo.errors}}
+        </div>
+        {% endfor %}
+    </fieldset>
+    <button type="submit" class="btn btn-default">提交</button>
+
+</form>
+
+
+<script type="text/javascript" src="/../static/vendor/jquery/js/jquery.min.js"></script>
+<script type="text/javascript" src="/../static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.glyphicon-plus').on('click', function () {
+            var that=$(this).closest('fieldset').find('.panel-collapse:last');
+            if(!that.hasClass('in')){
+                that.addClass('in');
+            }else{
+                that.removeClass('in');
+            }
+            
+        })
+    })
+</script>
+
+
