@@ -10,7 +10,7 @@ def writeDb(sql):
     连接mysql数据库（写），并进行写的操作，如果连接失败，会把错误写入日志中，并返回false，如果sql执行失败，也会把错误写入日志中，并返回false，如果所有执行正常，则返回true
     """
     try:
-        conn = MySQLdb.connect(host="localhost",user="root",passwd="123456",db="flight",charset="utf8") 
+        conn = MySQLdb.connect(host='duke2012.mysql.pythonanywhere-services.com',user="duke2012",passwd="zm@123456",db="duke2012$flight",charset="utf8") 
         cursor = conn.cursor()
     except Exception as e:
         print(e)
@@ -32,7 +32,7 @@ def readDb(sql):
 的数据，这个数据是经过转换的，转成字典格式，方便模板调用，其中字典的key是数据表里的字段名
     """
     try:
-        conn = MySQLdb.connect(host="localhost",user="root",passwd="123456",db="flight",charset="utf8") 
+        conn = MySQLdb.connect(host='duke2012.mysql.pythonanywhere-services.com',user="duke2012",passwd="zm@123456",db="duke2012$flight",charset="utf8") 
         cursor = conn.cursor()
     except Exception as e:
         return False

@@ -10,7 +10,7 @@ import  json
 
 # Create your views here.
 def  index(request):
-	menus=tools. getIndexMenuList()
+	menus=tools.getIndexMenuList()
 	context={'menuList':menus}
 	return render(request, 'atmb/base.html', context)
 def  basicItem(request,site_id):
@@ -152,7 +152,7 @@ def  wireShield(request,site_id):
 			temp.atmb_id=site_id
 			temp.save()
 			return HttpResponseRedirect(reverse('wireShield',kwargs={'site_id': site_id}))	
-	return render(request, 'atmb/WireShield.html', {'form': form,'site_id':site_id})
+	return render(request, 'atmb/wireShield.html', {'form': form,'site_id':site_id})
 	
 
 

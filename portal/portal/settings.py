@@ -81,10 +81,10 @@ WSGI_APPLICATION = 'portal.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'root',
-        'PASSWORD':'123456',
-        'NAME':'flight',
-        'HOST':'localhost' ,
+        'NAME': 'duke2012',
+        'PASSWORD':'zm@123456',
+        'NAME':'duke2012$flight',
+        'HOST':'duke2012.mysql.pythonanywhere-services.com' ,
         'PORT' :'3306'     
     }
 }
